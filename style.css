@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+#loading {
+    display: none;
+}
+
+#error-message {
+    display: none;
+}
+
+#results-card {
+    display: none;
+}

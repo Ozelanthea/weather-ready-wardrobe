@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Ready Wardrobet</title>
+    <title>Weather Ready Wardrobe</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Weather Ready Wardrobe App</h1>
+    </header>
+
+    <!-- Search area -->
+    <div id="search_input">
+        <input type="text" id="city_name">
+        <button id="search_button">Search</button>
+    </div>
+
+    <h2 id="loading">Fetching weather...</h2>
+
+    <div id="error-message"></div>
+
+    <div id="results-card">
+        <p id="city-name"></p>
+        <p id="temperature"></p>
+        <p id="weather-description"></p>
+        <p id="humidity"></p>
+        <p id="wind-speed"></p>
+        <p id="outfit-recommendation"></p>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
