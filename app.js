@@ -9,6 +9,7 @@ const resultsCard = document.querySelector("#results-card");
 const adviceDisplay = document.querySelector("#outfit-recommendation");
 const loading = document.querySelector("#loading");
 const errorMessage = document.querySelector("#error-message");
+const image = document.querySelector("#weather_icons");
 
 async function getWeather() {
     if (input.value === "") {
@@ -37,6 +38,8 @@ async function getWeather() {
     const advice = getOutfitAdvice(data.main.temp, data.weather[0].main);
 
     adviceDisplay.textContent = `Advice: ${advice}`
+
+    image.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
     cityName.textContent = `📍: ${data.name}`;
     
