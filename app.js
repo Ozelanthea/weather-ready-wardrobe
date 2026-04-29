@@ -56,6 +56,12 @@ async function getWeather() {
     
 }
 
+input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        getWeather();
+    }
+})
+
 btn.addEventListener("click", (event) => {
     getWeather();
 })
