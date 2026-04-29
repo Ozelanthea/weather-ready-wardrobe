@@ -34,9 +34,25 @@ header, #search_input {
     margin-bottom: 20px;
 }
 
+#city_name {
+    padding: 8px;
+    border: solid 2px #bdc3c7;
+    border-radius: 12px;
+    width: 250px;
+    outline: none;
+}
+
+#city_name:focus {
+    border-color: #3498db;
+}
+
 #search_button {
     background-color: #3498db;
     color: #FFFFFF;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 #results-card {
@@ -93,6 +109,10 @@ header, #search_input {
 #toggle-button {
     background-color: #2ecc71;
     color: #FFFFFF;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 #loading {
@@ -101,4 +121,18 @@ header, #search_input {
 
 #error-message {
     display: none;
+}
+
+@media (max-width: 600px) {
+    header, #search_input, #results-card {
+        max-width: 100%;
+    }
+
+    #search_input {
+        flex-direction: column;
+    }
+
+    #city_name, #search_button {
+        width: 100%;
+    }
 }
