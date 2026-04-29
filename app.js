@@ -9,7 +9,7 @@ const resultsCard = document.querySelector("#results-card");
 const adviceDisplay = document.querySelector("#outfit-recommendation");
 const loading = document.querySelector("#loading");
 const errorMessage = document.querySelector("#error-message");
-const image = document.querySelector("#weather_icons");
+const weatherIcon = document.querySelector("#weather_icon");
 const toggleButton = document.querySelector("#toggle-button");
 let currentUnit = "metric";
 
@@ -29,6 +29,7 @@ async function getWeather() {
 
     if (data.cod === "404") {
         errorMessage.style.display = "block";
+        weatherIcon.style.display = "none";
         resultsCard.style.display = "none";
         return;
     }
@@ -41,7 +42,7 @@ async function getWeather() {
 
     adviceDisplay.textContent = `Advice: ${advice}`
 
-    image.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+    weatherIcon.textContent = getWeatherEmoji(data.weather[0].main);
 
     cityName.textContent = `📍: ${data.name}`;
     
@@ -53,9 +54,47 @@ async function getWeather() {
     
     windSpeed.textContent = `Wind Speed: ${data.wind.speed}m/s`;
 
+    weatherIcon.style.display = "block";
+
     resultsCard.style.display = "block";
 
-    
+    updateCardTheme(data.main.temp, data.weather[0].main);
+}
+
+function getWeatherEmoji(condition) {
+    if (condition === "Thunderstorm") {
+        return "⛈️";
+    } else if (condition === "Drizzle") {
+        return "🌦️";
+    } else if (condition === "Rain") {
+        return "🌧️";
+    } else if (condition === "Snow") {
+        return "❄️";
+    } else if (condition === "Clear") {
+        return "☀️";
+    } else if (condition === "Clouds") {
+        return "☁️";
+    } else if (condition === "Mist" || condition === "Fog" || condition === "Haze") {
+        return "🌫️";
+    } else {
+        return "🌡️";
+    }
+}
+
+function updateCardTheme(temp, condition) {
+    resultsCard.classList.remove("weather-rainy", "weather-stormy", "weather-hot", "weather-cold");
+
+    if (condition === "Thunderstorm") {
+        resultsCard.classList.add("weather-stormy");
+    } else if (condition === "Rain" || condition === "Drizzle") {
+        resultsCard.classList.add("weather-rainy");
+    } else if (temp > 25) {
+        resultsCard.classList.add("weather-hot");
+    } else if (temp < 15) {
+        resultsCard.classList.add("weather-cold");
+    } else {
+        resultsCard.classList.add("weather-neutral")
+    }
 }
 
 toggleButton.addEventListener("click", (event) => {

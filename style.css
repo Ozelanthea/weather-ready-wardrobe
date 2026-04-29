@@ -2,14 +2,103 @@
     box-sizing: border-box;
 }
 
+body {
+    padding: 40px 20px;
+    font-family: "Lora", serif;
+    background-color: #f7fbfc;
+    color: #2c3e50;
+}
+
+h1 {
+    font-size: 35px;
+    color: #1a252f;
+}
+
+h2 {
+    color: #1a252f;
+
+}
+
+p {
+    margin-bottom: 5px;
+}
+
+header, #search_input {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#search_input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#search_button {
+    background-color: #3498db;
+    color: #FFFFFF;
+}
+
+#results-card {
+    display: none;
+    background-color: #FFFFFF;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);;
+    color: #64748B;
+}
+
+#weather_icon {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+#city-name {
+    font-size: 30px;
+}
+
+#temperature {
+    font-size: 22px;
+}
+
+#outfit-recommendation {
+    color: #2c3e50;
+    font-weight: 900;
+}
+
+.weather-rainy {
+    border-left: 8px solid #696969;
+}
+
+.weather-stormy{
+    border-left: 8px solid #0f172a;
+}
+
+/* Memphis/Nashville London/Dublin Ahmedabad/Delhi Oslo/Helsinki/Reykjavik Paris/Berlin */
+
+.weather-hot{
+    border-left: 8px solid #F4C430;
+}
+
+.weather-cold {
+    border-left: 8px solid #B0E0E6;
+}
+
+.weather-neutral {
+    border-left: 8px solid #bdc3c7;
+}
+
+#toggle-button {
+    background-color: #2ecc71;
+    color: #FFFFFF;
+}
+
 #loading {
     display: none;
 }
 
 #error-message {
-    display: none;
-}
-
-#results-card {
     display: none;
 }
