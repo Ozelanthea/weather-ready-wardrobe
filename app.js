@@ -7,10 +7,30 @@ const humidity = document.querySelector("#humidity");
 const windSpeed = document.querySelector("#wind-speed");
 const resultsCard = document.querySelector("#results-card");
 const adviceDisplay = document.querySelector("#outfit-recommendation");
+const loading = document.querySelector("#loading");
+const errorMessage = document.querySelector("#error-message");
 
 async function getWeather() {
+    if (input.value === "") {
+        return;
+    }
+
+    loading.style.display = "block";
+
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input.value}&units=metric&appid=5353309fcaa7998aa6dd6c93a676eef6`);
     const data = await response.json();
+
+    errorMessage.textContent = "City not found. Please check the spelling and try again."
+
+    loading.style.display = "none";
+
+    if (data.cod === "404") {
+        errorMessage.style.display = "block";
+        resultsCard.style.display = "none";
+        return;
+    }
+
+    errorMessage.style.display = "none";
 
     console.log(data);
     
