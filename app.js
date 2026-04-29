@@ -10,6 +10,8 @@ const adviceDisplay = document.querySelector("#outfit-recommendation");
 const loading = document.querySelector("#loading");
 const errorMessage = document.querySelector("#error-message");
 const image = document.querySelector("#weather_icons");
+const toggleButton = document.querySelector("#toggle-button");
+let currentUnit = "metric";
 
 async function getWeather() {
     if (input.value === "") {
@@ -18,7 +20,7 @@ async function getWeather() {
 
     loading.style.display = "block";
 
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input.value}&units=metric&appid=5353309fcaa7998aa6dd6c93a676eef6`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input.value}&units=${currentUnit}&appid=5353309fcaa7998aa6dd6c93a676eef6`);
     const data = await response.json();
 
     errorMessage.textContent = "City not found. Please check the spelling and try again."
@@ -43,9 +45,9 @@ async function getWeather() {
 
     cityName.textContent = `📍: ${data.name}`;
     
-    temperature.textContent = `Temperature: ${data.main.temp.toFixed(1)}°C`;
+    temperature.textContent = `Temperature: ${data.main.temp.toFixed(1)}${currentUnit === "metric" ? "°C" : "°F"}`;
 
-    weatherDescription.textContent = `Weather Description: ${data.weather[0].description}`;
+    weatherDescription.textContent = `Weather Description: ${data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1)}`;
 
     humidity.textContent = `Humidity: ${data.main.humidity}%`;
     
@@ -55,6 +57,18 @@ async function getWeather() {
 
     
 }
+
+toggleButton.addEventListener("click", (event) => {
+    if (currentUnit === "metric") {
+        currentUnit = "imperial";
+        toggleButton.textContent = "Switch to °C"
+    } else {
+        currentUnit = "metric";
+        toggleButton.textContent = "Switch to °F"
+    }
+
+    getWeather();
+})
 
 input.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
