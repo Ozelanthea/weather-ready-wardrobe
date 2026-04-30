@@ -12,6 +12,7 @@ const errorMessage = document.querySelector("#error-message");
 const weatherIcon = document.querySelector("#weather_icon");
 const toggleButton = document.querySelector("#toggle-button");
 const historyDiv = document.querySelector("#search-history");
+const adviceTone = document.querySelectorAll('input[name="tone"]');
 let currentUnit = "metric";
 
 const searchHistory = (JSON.parse(localStorage.getItem("searchHistory")) || []);
@@ -153,6 +154,12 @@ input.addEventListener("keydown", (event) => {
 btn.addEventListener("click", (event) => {
     getWeather();
 })
+
+for (let i = 0; i < adviceTone.length; i++) {
+    adviceTone[i].addEventListener("click", event => {
+        getWeather();
+    })
+}
 
 function getOutfitAdvice(temp, condition, tone) {
     if (condition === "Thunderstorm") {
