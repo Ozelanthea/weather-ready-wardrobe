@@ -15,6 +15,7 @@ const historyDiv = document.querySelector("#search-history");
 const adviceTone = document.querySelectorAll('input[name="tone"]');
 const forecastStrip = document.querySelector("#forecast-strip");
 const threeDayForecast = document.querySelector("#three-day-forecast");
+const feelsLike = document.querySelector("#feels-like");
 let currentUnit = "metric";
 
 const searchHistory = (JSON.parse(localStorage.getItem("searchHistory")) || []);
@@ -84,6 +85,8 @@ async function getWeather() {
     
     temperature.textContent = `Temperature: ${data.main.temp.toFixed(1)}${currentUnit === "metric" ? "°C" : "°F"}`;
 
+    feelsLike.textContent = `Feels Like: ${data.main.feels_like.toFixed(1)}${currentUnit === "metric" ? "°C" : "°F"}`;
+
     weatherDescription.textContent = `Weather Description: ${data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1)}`;
 
     humidity.textContent = `Humidity: ${data.main.humidity}%`;
@@ -114,7 +117,7 @@ async function getForecast() {
         paragraph2.textContent = `Emoji: ${getWeatherEmoji(filteredData[i].weather[0].main)}`;
         
         const paragraph3 = document.createElement("p");
-        paragraph3.textContent = `Temperature: ${filteredData[i].main.temp.toFixed(1)}`;
+        paragraph3.textContent = `Temperature: ${filteredData[i].main.temp.toFixed(1)}${currentUnit === "metric" ? "°C" : "°F"}`;
 
         const paraDiv = document.createElement("div");
         paraDiv.append(paragraph1, paragraph2, paragraph3);
