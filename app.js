@@ -11,7 +11,28 @@ const loading = document.querySelector("#loading");
 const errorMessage = document.querySelector("#error-message");
 const weatherIcon = document.querySelector("#weather_icon");
 const toggleButton = document.querySelector("#toggle-button");
+const historyDiv = document.querySelector("#search-history");
 let currentUnit = "metric";
+
+const searchHistory = (JSON.parse(localStorage.getItem("searchHistory")) || []);
+
+function renderHistory() {
+    historyDiv.innerHTML = "";
+
+    for (let i = 0; i < searchHistory.length; i++) {
+        const button = document.createElement("button");
+        button.textContent = searchHistory[i];
+
+        button.addEventListener("click", event => {
+            input.value = searchHistory[i];
+            getWeather();
+        })
+
+        historyDiv.appendChild(button);
+    }
+}
+
+renderHistory()
 
 async function getWeather() {
     if (input.value === "") {
@@ -39,6 +60,18 @@ async function getWeather() {
     errorMessage.style.display = "none";
 
     console.log(data);
+
+    if (!searchHistory.includes(data.name)) {
+        searchHistory.push(data.name);
+
+        if (searchHistory.length > 5) {
+            searchHistory.shift();
+        }
+    }
+    
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+
+    renderHistory();
     
     const advice = getOutfitAdvice(data.main.temp, data.weather[0].main, selectedTone);
 
