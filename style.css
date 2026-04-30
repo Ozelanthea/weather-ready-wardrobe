@@ -55,6 +55,30 @@ header, #search_input {
     cursor: pointer;
 }
 
+input[type="radio"] {
+    display: none;
+}
+
+#tone-selector {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#tone-selector input[type="radio"]:checked + label {
+    background-color: #3498db;
+    color: #FFFFFF;
+    border-color: #3498db
+}
+
+#tone-selector > label {
+    padding: 6px 10px;
+    border: solid 2px #bdc3c7;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+}
+
 #results-card {
     display: none;
     background-color: #FFFFFF;
