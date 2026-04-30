@@ -38,7 +38,7 @@ header, #search_input {
     padding: 8px;
     border: solid 2px #bdc3c7;
     border-radius: 12px;
-    width: 250px;
+    width: 100%;
     outline: none;
 }
 
@@ -53,6 +53,11 @@ header, #search_input {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+}
+
+#search-history {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 #search-history > button {
@@ -182,7 +187,7 @@ input[type="radio"] {
 }
 
 @media (max-width: 600px) {
-    header, #search_input, #results-card, #forecast-strip, #three-day-forecast {
+    header, #search_input, #search-history, #results-card, #forecast-strip, #three-day-forecast {
         max-width: 100%;
     }
 
