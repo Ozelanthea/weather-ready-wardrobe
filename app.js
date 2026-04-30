@@ -18,6 +18,8 @@ async function getWeather() {
         return;
     }
 
+    const selectedTone = document.querySelector('input[name="tone"]:checked').value;
+
     loading.style.display = "block";
 
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input.value}&units=${currentUnit}&appid=5353309fcaa7998aa6dd6c93a676eef6`);
@@ -38,7 +40,7 @@ async function getWeather() {
 
     console.log(data);
     
-    const advice = getOutfitAdvice(data.main.temp, data.weather[0].main);
+    const advice = getOutfitAdvice(data.main.temp, data.weather[0].main, selectedTone);
 
     adviceDisplay.textContent = `Advice: ${advice}`
 
@@ -119,27 +121,87 @@ btn.addEventListener("click", (event) => {
     getWeather();
 })
 
-function getOutfitAdvice(temp, condition) {
+function getOutfitAdvice(temp, condition, tone) {
     if (condition === "Thunderstorm") {
-        return "Stay indoors! It's safer to watch the lightning from your window.";
+        if (tone === "fun") {
+            return "Girl, stay HOME! The sky is literally falling out there — grab snacks and Netflix!⛈️"
+        } else if (tone === "formal") {
+            return "Severe weather and conditions are present. It is strongly advised to remain indoors and avoid unnecessary travel."
+        } else {
+            return "Stay inside."
+        }
     } else if (condition === "Snow") {
-        return "Time for thermal layers, a heavy puffer coat, and boots with good grip."
+        if (tone === "fun") {
+            return "IT'S GIVING WINTER WONDERLAND!! Bundle up bestie, it's snow day energy!❄️"
+        } else if (tone === "formal") {
+            return "Snowfall is occuring. Thermal layers, insulated footwear, and a heavy coat are essential."
+        } else {
+            return "Heavy coat. Warm boots."
+        }
     } else if (condition === "Mist" || condition === "Fog" || condition === "Haze") {
-        return "Visibility is low today — drive carefully and wear bright colours."
+        if (tone === "fun") {
+            return "Spooky fog era!! Wear something bright so people can actually see you out there.👻"
+        } else if (tone === "formal") {
+            return "Visibility is reduced due to atmospheric conditions. Bright or reflective clothing is advisable."
+        } else {
+            return "Wear bright colours. Drive carefully."
+        }
     } else if (condition === "Rain" || condition === "Drizzle") {
-        return "Carry a waterproof jacket and an umbrella. Stay dry!"
+        if (tone === "fun") {
+            return "Umbrella szn! Grab your cutest raincoat and jump in some puddles!🌧️"
+        } else if (tone === "formal") {
+            return "Precipitation is expected. A waterproof outer layer and umbrella are recommended."
+        } else {
+            return "Raincoat. Umbrella."
+        }
     } else if (condition === "Clear" && temp > 30) {
-        return "It's scorching! Wear light linen clothes, a hat, and don't forget sunblock."
+        if (tone === "fun") {
+            return "SCORCHING our here!! Sundress, SPF, and a cold drink — that's your whole personality today.☀️"
+        } else if (tone === "formal") {
+            return "Temperatures are significantly elevated. Lightweight, breathable clothing and sun protection are advised."
+        } else {
+            return "Light clothes. Sunscreen."
+        }
     } else if (condition === "Clear" && temp >= 20 && temp <= 30) {
-        return "Perfect weather! A light t-shirt and shorts or a summer dress will be great."
+        if (tone === "fun") {
+            return "Perfect weather bestie!! T-shirt and jeans energy, go outside and LIVE!☀️"
+        } else if (tone === "formal") {
+            return "Conditions are pleasant today. Light, comfortable clothing is appropriate."
+        } else {
+            return "T-shirt and jeans."
+        }
     } else if (condition === "Clouds" && temp < 20) {
-        return "A bit chilly and grey. A sweater or a light denim jacket is a safe bet."
+        if (tone === "fun") {
+            return "Grey skies and chilly vibes — cozy sweater szn is HERE bestie.🧥"
+        } else if (tone === "formal") {
+            return "Cool, overcast conditions are present. A warm sweater or mid-layer is recommended."
+        } else {
+            return "Sweater. Jacket."
+        }
     } else if (condition === "Clouds" && temp >= 20) {
-        return "It's cloudy but warm! A comfortable t-shirt or long-sleeve shirt is all you need."
+        if (tone === "fun") {
+            return "Cloudy but make it cute! A light long-sleeve or denim jacket and you're good to go.☁️"
+        } else if (tone === "formal") {
+            return "Overcast but mild conditions. A light layer over casual clothing is sufficient."
+        } else {
+            return "Light jacket."
+        }
     } else if (temp < 10) {
-        return "It's freezing! Grab your scarf, gloves, and a warm wool coat."
+        if (tone === "fun") {
+            return "IT IS COLD COLD!! Scarf, gloves, big coat — layer everything you own bestie.🥶"
+        } else if (tone === "formal") {
+            return "Temperatures are critically low. Full winter attire including coat, scarf, and gloves is essential."
+        } else {
+            return "Heavy coat. Scarf. Gloves."
+        }
     }  else {
-        return "Dress in comfortable layers so you can adjust throughout the day."
+        if (tone === "fun") {
+            return "Honestly? Layer up and see how it goes! Fashion is about taking risks anyway.😌"
+        } else if (tone === "formal") {
+            return "Conditions are variable. Dressing in adaptable layers is the most practical approach."
+        } else {
+            return "Wear layers."
+        }
     }
 }
 

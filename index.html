@@ -16,8 +16,15 @@
 
     <!-- Search area -->
     <div id="search_input">
-        <input type="text" id="city_name">
+        <input type="text" id="city_name" placeholder="Enter a city">
         <button id="search_button">Search</button>
+    </div>
+
+    <div id="tone-selector">
+        <label for="">Choose your style:</label>
+        <label for="fun"><input type="radio" id="fun" name="tone" value="fun" checked>Fun</label>
+        <label for="formal"><input type="radio" id="formal" name="tone" value="formal">Formal</label>
+        <label for="minimal"><input type="radio" id="minimal" name="tone" value="minimal">Minimal</label>
     </div>
 
     <h2 id="loading">Fetching weather...</h2>
