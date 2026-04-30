@@ -182,7 +182,7 @@ input[type="radio"] {
 }
 
 @media (max-width: 600px) {
-    header, #search_input, #results-card {
+    header, #search_input, #results-card, #forecast-strip, #three-day-forecast {
         max-width: 100%;
     }
 
@@ -192,5 +192,9 @@ input[type="radio"] {
 
     #city_name, #search_button {
         width: 100%;
+    }
+    
+    #forecast-strip {
+        flex-wrap: wrap;
     }
 }

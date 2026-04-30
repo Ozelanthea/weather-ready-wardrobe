@@ -62,8 +62,6 @@ async function getWeather() {
 
     errorMessage.style.display = "none";
 
-    console.log(data);
-
     if (!searchHistory.includes(data.name)) {
         searchHistory.push(data.name);
 
@@ -100,7 +98,6 @@ async function getWeather() {
 
     getForecast();
 }
-    // adugo_chioma
 async function getForecast() {
     forecastStrip.innerHTML = "";
 
