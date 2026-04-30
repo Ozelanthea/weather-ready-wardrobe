@@ -94,6 +94,13 @@ input[type="radio"] {
     display: inline-block;
 }
 
+#welcome-message {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: 100px;
+}
+
 #results-card {
     display: none;
     background-color: #FFFFFF;

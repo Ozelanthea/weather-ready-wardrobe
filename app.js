@@ -16,6 +16,7 @@ const adviceTone = document.querySelectorAll('input[name="tone"]');
 const forecastStrip = document.querySelector("#forecast-strip");
 const threeDayForecast = document.querySelector("#three-day-forecast");
 const feelsLike = document.querySelector("#feels-like");
+const welcomeMessage = document.querySelector("#welcome-message");
 let currentUnit = "metric";
 
 const searchHistory = (JSON.parse(localStorage.getItem("searchHistory")) || []);
@@ -44,6 +45,8 @@ async function getWeather() {
     }
 
     const selectedTone = document.querySelector('input[name="tone"]:checked').value;
+
+    welcomeMessage.style.display = "none";
 
     loading.style.display = "block";
 
