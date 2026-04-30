@@ -55,6 +55,16 @@ header, #search_input {
     cursor: pointer;
 }
 
+#search-history > button {
+    margin-right: 5px;
+    padding: 6px 10px;
+    background-color: #f7fbfc;
+    border: solid 2px #bdc3c7;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+}
+
 input[type="radio"] {
     display: none;
 }
