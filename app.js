@@ -13,6 +13,8 @@ const weatherIcon = document.querySelector("#weather_icon");
 const toggleButton = document.querySelector("#toggle-button");
 const historyDiv = document.querySelector("#search-history");
 const adviceTone = document.querySelectorAll('input[name="tone"]');
+const forecastStrip = document.querySelector("#forecast-strip");
+const threeDayForecast = document.querySelector("#three-day-forecast");
 let currentUnit = "metric";
 
 const searchHistory = (JSON.parse(localStorage.getItem("searchHistory")) || []);
@@ -95,6 +97,37 @@ async function getWeather() {
     resultsCard.style.display = "block";
 
     updateCardTheme(data.main.temp, data.weather[0].main);
+
+    getForecast();
+}
+    // adugo_chioma
+async function getForecast() {
+    forecastStrip.innerHTML = "";
+
+    const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${input.value}&units=${currentUnit}&appid=5353309fcaa7998aa6dd6c93a676eef6`);
+    const forecastData = await forecastResponse.json();
+
+    const filteredData = forecastData.list.filter(item => item.dt_txt.includes("12:00:00")).slice(0,3);
+
+    for (let i = 0; i < filteredData.length; i++) {
+        const paragraph1 = document.createElement("p");
+        paragraph1.textContent = `Date: ${filteredData[i].dt_txt.slice(0,10)}`;
+
+        const paragraph2 = document.createElement("p");
+        paragraph2.textContent = `Emoji: ${getWeatherEmoji(filteredData[i].weather[0].main)}`;
+        
+        const paragraph3 = document.createElement("p");
+        paragraph3.textContent = `Temperature: ${filteredData[i].main.temp.toFixed(1)}`;
+
+        const paraDiv = document.createElement("div");
+        paraDiv.append(paragraph1, paragraph2, paragraph3);
+
+        forecastStrip.appendChild(paraDiv);
+        
+    }
+
+    threeDayForecast.style.display = "block";
+    forecastStrip.style.display = "flex";
 }
 
 function getWeatherEmoji(condition) {

@@ -96,7 +96,7 @@ input[type="radio"] {
     margin: 0 auto;
     padding: 20px;
     border-radius: 6px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     color: #64748B;
 }
 
@@ -155,6 +155,30 @@ input[type="radio"] {
 
 #error-message {
     display: none;
+}
+
+#three-day-forecast {
+    display: none;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+#forecast-strip {
+    display: none;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+#forecast-strip > div {
+    background-color: #FFFFFF;
+    margin: 10px 0px;
+    padding: 4px 10px;
+    border-radius: 5px;
+    flex: 1;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 600px) {
