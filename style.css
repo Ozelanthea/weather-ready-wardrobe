@@ -70,6 +70,10 @@ header, #search_input {
     display: inline-block;
 }
 
+#search-history > button:hover {
+    background-color: #bdc3c7;
+}
+
 input[type="radio"] {
     display: none;
 }
@@ -92,6 +96,11 @@ input[type="radio"] {
     border-radius: 8px;
     cursor: pointer;
     display: inline-block;
+}
+
+#tone-selector > label:hover {
+    background-color: #bdc3c7;
+    color: #000;
 }
 
 #welcome-message {
@@ -198,6 +207,12 @@ input[type="radio"] {
     flex: 1;
     text-align: center;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#forecast-strip > div:hover {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
 }
 
 @media (max-width: 600px) {
