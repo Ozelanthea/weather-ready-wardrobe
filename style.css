@@ -163,10 +163,17 @@ input[type="radio"] {
 
 #loading {
     display: none;
+    text-align: center;
+    margin-top: 50px;
 }
 
 #error-message {
     display: none;
+}
+
+#loading-forecast {
+    display: none;
+    text-align: center;
 }
 
 #three-day-forecast {

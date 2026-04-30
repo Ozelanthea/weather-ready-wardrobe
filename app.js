@@ -17,6 +17,7 @@ const forecastStrip = document.querySelector("#forecast-strip");
 const threeDayForecast = document.querySelector("#three-day-forecast");
 const feelsLike = document.querySelector("#feels-like");
 const welcomeMessage = document.querySelector("#welcome-message");
+const loadingForecast = document.querySelector("#loading-forecast");
 let currentUnit = "metric";
 
 const searchHistory = (JSON.parse(localStorage.getItem("searchHistory")) || []);
@@ -49,6 +50,8 @@ async function getWeather() {
     welcomeMessage.style.display = "none";
 
     loading.style.display = "block";
+
+    loadingForecast.style.display = "block";
 
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input.value}&units=${currentUnit}&appid=5353309fcaa7998aa6dd6c93a676eef6`);
     const data = await response.json();
@@ -111,6 +114,8 @@ async function getForecast() {
     const forecastData = await forecastResponse.json();
 
     const filteredData = forecastData.list.filter(item => item.dt_txt.includes("12:00:00")).slice(0,3);
+    
+    loadingForecast.style.display = "none";
 
     for (let i = 0; i < filteredData.length; i++) {
         const paragraph1 = document.createElement("p");
